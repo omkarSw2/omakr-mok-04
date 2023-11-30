@@ -17,7 +17,8 @@ export const ForumPost = (obj) => async (dispatch) => {
         dispatch({ type: FROUMSUCCESS });
         return data;
       });
-    console.log(res);
+    // console.log(res);
+    GETFORUMDATA();
     return res;
   } catch (error) {
     dispatch({ type: FORUMERROR });
@@ -35,6 +36,7 @@ export const GETFORUMDATA = () => async (dispatch) => {
         return data;
       });
     // console.log(res);
+    // ForumPost();
     return res;
   } catch (error) {
     dispatch({ type: FORUMERROR });

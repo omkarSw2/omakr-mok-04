@@ -14,6 +14,7 @@ import {
   FormControl,
   FormLabel,
   Select,
+  useToast,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { ForumPost, GETFORUMDATA } from "../redux/Forum/action";
@@ -33,7 +34,7 @@ const ForumPage = () => {
   const year = birthday.getFullYear();
   const month = birthday.getMonth();
   const usedispatch = useDispatch();
-
+  const toast = useToast();
   const handlePost = () => {
     let obj = {
       id: Date.now(),
@@ -59,11 +60,18 @@ const ForumPage = () => {
     };
     console.log(obj);
     usedispatch(ForumPost(obj));
+    toast({
+      title: "New Data Added.",
+      description: "New Data Added.",
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    });
   };
 
   useEffect(() => {
     usedispatch(GETFORUMDATA());
-  }, []);
+  }, [data]);
   return (
     <>
       <Button onClick={onOpen}>Ask Question</Button>
